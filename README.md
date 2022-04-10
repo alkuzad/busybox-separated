@@ -14,20 +14,20 @@ scoop bucket add busybox-separated https://github.com/alkuzad/busybox-separated.
 Then install any package, prefixed by unxutils:
 
 ```
-scoop install busybox-tee
+scoop install busybox-watch
 ```
 
 And use:
 
 ```batch
-rem Note the lack of \ at the end, it's important
-grep test "C:\Users\%USERNAME%.%USERDOMAIN%" -r
+
+watch -n1 kubectl get pod | awk "/Every/{print $0}/backend/{print $0}"
 ```
 
 Or for ones that have same Windows command, use l-prefixed command:
 
 ```batch
-ltee C:\Users -type d
+ltee
 ```
 
 # Linux prefix
