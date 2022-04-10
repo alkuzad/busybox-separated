@@ -8,7 +8,7 @@ for each binary separatelly. For sha256 generation, valid unxutils folder has to
 # Add to Scoop
 
 ```
-scoop bucket add unxutils-separated https://github.com/alkuzad/busybox-separated.git
+scoop bucket add busybox-separated https://github.com/alkuzad/busybox-separated.git
 ```
 
 Then install any package, prefixed by unxutils:
