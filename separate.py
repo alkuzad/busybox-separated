@@ -44,9 +44,9 @@ def single_binary_content(source_json: dict, binary: Binary, sha: str):
         bin_definition("busybox.exe", f"l{binary.name_without_extension}", binary.name_without_extension)
     ]
     new_json["hash"] = sha
-    new_json[
-        "url"
-    ] = f"https://github.com/alkuzad/busybox-separated/releases/download/4621/busybox.exe"
+    new_json["url"] = (
+        f"https://github.com/alkuzad/busybox-separated/releases/download/6075/busybox.exe"
+    )
     new_json["description"] = f"{source_json['description']} - only {binary.name}"
     return new_json
 
