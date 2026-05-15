@@ -24,36 +24,6 @@
     "    Set-Content -Path \"$env:USERPROFILE\\.profile\" -Value $cfg -Encoding oem",
     "}"
   ],
-  "post_install": [
-    "$process_info = [System.Diagnostics.ProcessStartInfo]@{",
-    "    FileName = \"$dir\\busybox.exe\"; Arguments = '--list'",
-    "    CreateNoWindow = $true; UseShellExecute = $false; RedirectStandardOutput = $true",
-    "}",
-    "$process = [System.Diagnostics.Process]::Start($process_info)",
-    "$stdout_content = $process.StandardOutput.ReadToEnd()",
-    "$process.WaitForExit()",
-    "Write-Output \"`nCreating shim for 'busybox'.\"",
-    "shim \"$dir\\busybox.exe\" $global 'busybox'",
-    "$stdout_content -split \"`r?`n\" | Where-Object { $_ -match '^\\S' } | ForEach-Object {",
-    "    Write-Output \"Creating shim for '$($_.Trim())'.\"",
-    "    shim \"$dir\\busybox.exe\" $global $_.Trim() $_.Trim()",
-    "}"
-  ],
-  "uninstaller": {
-    "script": [
-      "$process_info = [System.Diagnostics.ProcessStartInfo]@{",
-      "    FileName = \"$dir\\busybox.exe\"; Arguments = '--list'",
-      "    CreateNoWindow = $true; UseShellExecute = $false; RedirectStandardOutput = $true",
-      "}",
-      "$process = [System.Diagnostics.Process]::Start($process_info)",
-      "$stdout_content = $process.StandardOutput.ReadToEnd()",
-      "$process.WaitForExit()",
-      "rm_shim 'busybox' $(shimdir $global) $app",
-      "$stdout_content -split \"`r?`n\" | Where-Object { $_ -match '^\\S' } | ForEach-Object {",
-      "    rm_shim $_.Trim() $(shimdir $global) $app",
-      "}"
-    ]
-  },
   "checkver": {
     "url": "https://frippery.org/files/busybox/?C=M;O=D",
     "regex": "busybox-w64-FRP-([\\w-]+)"
